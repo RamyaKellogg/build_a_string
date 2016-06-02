@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @safety_valve.errors.any? %>
+  <% @safety_valve.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Safety Valve</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_safety_valve" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for size -->
+      <div class="form-group">
+        <label for="size" class="control-label">
+          Size(Inch)
+        </label>
+
+        <%= select_tag( "size", options_for_select([ "3", "3.5", "4", "4.5", "5", "5.5" , "6" , "6.5", "7", "7.5","8" ],@safety_valve.size),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for category -->
+      <div class="form-group">
+        <label for="category" class="control-label">
+          Type
+        </label>
+
+        <%= select_tag( "category", options_for_select([ "SP-TRSV", "NE-TRSV" , "Depthstar" , "WLRSV" ],@safety_valve.category),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for pressure_rating -->
+      <div class="form-group">
+        <label for="pressure_rating" class="control-label">
+          Pressure Rating (PSI)
+        </label>
+
+        <%= select_tag( "pressure_rating", options_for_select([ "5000", "5500" , "6000" , "6500", "7000", "7500", "8000", "8500", "9000", "9500", "10000" ],@safety_valve.pressure_rating),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @safety_valve.description %></textarea>
+      </div>
+
+      <button class="btn btn-success">
+        Create Safety Valve
+      </button>
+      or
+      <a href="/safety_valves">Cancel</a>
+    </form>
+  </div>
+</div>

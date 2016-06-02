@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Couplings
+    <a href="/couplings/new" class="btn btn-lg btn-success">Add a New Coupling</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Size (Inch)</th>
+        <th>Type</th>
+        <th>Pressure Rating (PSI)</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @couplings.each do |coupling| %>
+      <tr>
+        <td><%= coupling.size %></td>
+        <td><%= coupling.category %></td>
+        <td><%= coupling.pressure_rating %></td>
+        <td><%= coupling.description %></td>
+        <td>
+          <a href="/couplings/<%= coupling.id %>" class="btn btn-primary">Show</a>
+          <a href="/couplings/<%= coupling.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_coupling/<%= coupling.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Safety valves
+    <a href="/safety_valves/new" class="btn btn-lg btn-success">Add a New Safety Valve</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Size (Inch)</th>
+        <th>Type</th>
+        <th>Pressure Rating (PSI)</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @safety_valves.each do |safety_valve| %>
+      <tr>
+        <td><%= safety_valve.size %></td>
+        <td><%= safety_valve.category %></td>
+        <td><%= safety_valve.pressure_rating %></td>
+        <td><%= safety_valve.description %></td>
+        <td>
+          <a href="/safety_valves/<%= safety_valve.id %>" class="btn btn-primary">Show</a>
+          <a href="/safety_valves/<%= safety_valve.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_safety_valve/<%= safety_valve.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

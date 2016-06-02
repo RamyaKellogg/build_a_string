@@ -1,0 +1,70 @@
+<!-- Validation failure messages -->
+<% if @tubing.errors.any? %>
+  <% @tubing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit <%= @tubing.name %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_tubing/<%= @tubing.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for coupling_id -->
+      <div class="form-group">
+        <label for="coupling_id" class="control-label">
+          Coupling
+        </label>
+
+          <%= select_tag(:coupling_id,options_from_collection_for_select(Coupling.all, :id,:description, @tubing.coupling_id),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for packer_id -->
+      <div class="form-group">
+        <label for="packer_id" class="control-label">
+          Packer
+        </label>
+
+        <%= select_tag(:packer_id,options_from_collection_for_select(Packer.all, :id,:description, @tubing.packer_id),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for safety_valve_id -->
+      <div class="form-group">
+        <label for="safety_valve_id" class="control-label">
+          Safety valve
+        </label>
+
+        <%= select_tag(:safety_valve_id,options_from_collection_for_select(SafetyValve.all, :id,:description, @tubing.safety_valve_id),:class => "form-control") %>
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Project Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @tubing.name %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @tubing.user_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Tubing
+      </button>
+      or
+      <a href="/tubings/<%= @tubing.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h3><%= @coupling.size %>",<%= @coupling.category %>,<%= @coupling.pressure_rating %> PSI,<%= @coupling.description %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Size (Inch)</dt>
+      <dd><%= @coupling.size %></dd>
+
+      <dt>Type</dt>
+      <dd><%= @coupling.category %></dd>
+
+      <dt>Pressure Rating (PSI)</dt>
+      <dd><%= @coupling.pressure_rating %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @coupling.description %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/couplings" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/couplings/<%= @coupling.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_coupling/<%= @coupling.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
