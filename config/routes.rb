@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  
-  get "/", :controller => "tubings", :action => "index"
+
+  devise_for :users
+  #get "/", :controller => "tubings", :action => "index"
+  root "tubings#index"
 
   # Routes for the Packer resource:
   # CREATE
