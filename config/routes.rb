@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   get "/", :controller => "tubings", :action => "index"
 
   # Routes for the Packer resource:
